@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <p>Enter the starting time in second:</p>
+    <input type="number" id="timer-input">
+    <button onclick="startTimer()">Enter</button>
+    <h3 id="current-timer"></h3>
+</body>
+
+
+<script>
+    var interval    //DECLARE INTERVAL VARIABLE OUTSIDE OF startTimer function.
+
+    function startTimer(){
+        timeInput = Math.floor(document.getElementById("timer-input").value);
+        currentTimer = document.getElementById("current-timer");
+
+        if(interval){
+            clearInterval(interval)
+        }
+
+        if(isNaN(timeInput)){
+            timeInput = 0
+        }
+
+        interval = setInterval(function() {
+            currentTimer.innerHTML = timeInput;
+            timeInput--;
+            if(timeInput <0){
+                clearInterval(interval);
+                currentTimer.innerHTML= "0";
+            }
+        }, 1000);
+    }
+
+</script>
+</html>
